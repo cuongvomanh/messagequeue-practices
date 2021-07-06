@@ -1,10 +1,9 @@
-package com.example.messagequeueinspring.runner;
+package com.example.messagequeueinspring.scheduler;
 
 import com.example.messagequeueinspring.config.AsyncConfiguration;
-import com.example.messagequeueinspring.processor.ConsumeStrategyTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.messagequeueinspring.processor.ConsumeProcessorTemplate;
+import com.example.messagequeueinspring.processor.Processor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,7 +15,7 @@ public class AsyncExecutorScheduler implements Scheduler {
         this.asyncConfiguration = asyncConfiguration;
     }
 
-    public void schedule(ConsumeStrategyTemplate consumeStrategy) {
-        asyncConfiguration.getAsyncExecutor().execute(consumeStrategy);
+    public void schedule(Processor processor) {
+        asyncConfiguration.getAsyncExecutor().execute(processor);
     }
 }

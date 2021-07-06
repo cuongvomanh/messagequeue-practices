@@ -12,14 +12,14 @@ import java.time.Duration;
 import java.util.Collection;
 import java.util.Map;
 
-public class ConsumeStrategyTemplate<T> implements Runnable {
-    private final Logger LOGGER = LoggerFactory.getLogger(ConsumeStrategyTemplate.class);
+public class KafkaConsumeProcessor<T> implements ConsumeProcessorTemplate {
+    private final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumeProcessor.class);
     private Handler<T> handler;
     private Collection<String> topics;
     private KafkaProperties kafkaProperties;
 
 
-    public ConsumeStrategyTemplate(Handler<T> handler, Collection<String> topics, KafkaProperties kafkaProperties) {
+    public KafkaConsumeProcessor(Handler<T> handler, Collection<String> topics, KafkaProperties kafkaProperties) {
         this.handler = handler;
         this.topics = topics;
         this.kafkaProperties = kafkaProperties;
