@@ -1,7 +1,6 @@
 package com.example.messagequeueinspring.scheduler;
 
-import com.example.messagequeueinspring.processor.ConsumeProcessorTemplate;
-import com.example.messagequeueinspring.processor.Processor;
+import com.example.messagequeueinspring.messagequeue.processor.Processor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 

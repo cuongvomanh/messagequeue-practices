@@ -1,6 +1,5 @@
-package com.example.messagequeueinspring.handler;
+package com.example.messagequeueinspring.service.handler;
 
-import com.example.messagequeueinspring.domain.Book;
 import com.example.messagequeueinspring.dto.BookDTO;
 import com.example.messagequeueinspring.exception.BadRequestException;
 import com.example.messagequeueinspring.service.BookService;

@@ -1,6 +1,5 @@
-package com.example.messagequeueinspring.handler;
+package com.example.messagequeueinspring.service.handler;
 
-import com.example.messagequeueinspring.domain.Book;
 import com.example.messagequeueinspring.exception.BadRequestException;
 
 public interface Handler<T> {
