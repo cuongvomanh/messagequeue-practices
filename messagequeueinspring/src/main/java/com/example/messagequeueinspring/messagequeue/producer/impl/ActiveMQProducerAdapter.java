@@ -46,6 +46,5 @@ public class ActiveMQProducerAdapter implements MessageProducer {
         } catch (JMSException e) {
             e.printStackTrace();
         }
-
     }
 }

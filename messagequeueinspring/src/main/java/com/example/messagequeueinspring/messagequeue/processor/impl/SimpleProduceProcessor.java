@@ -32,7 +32,13 @@ public class SimpleProduceProcessor implements ProduceProcessorTemplate {
             BookDTO book = new BookDTO(1, "Harry Potter", 0);
             MessageProducerRecord<String, BookDTO> producerRecord = (MessageProducerRecord) context.getBean(MessageProducerRecord.class);
             producerRecord.setTopicsAndBook(topics, book);
+
+
+            BookDTO book1 = new BookDTO(1, "Harry Potter1", 0);
+            MessageProducerRecord<String, BookDTO> producerRecord1 = (MessageProducerRecord) context.getBean(MessageProducerRecord.class);
+            producerRecord1.setTopicsAndBook(topics, book1);
             messageProducer.send(producerRecord, printSendResultCallback());
+            messageProducer.send(producerRecord1, printSendResultCallback());
         } catch (Exception exception){
             LOGGER.error("Error kafka produce");
             exception.printStackTrace();

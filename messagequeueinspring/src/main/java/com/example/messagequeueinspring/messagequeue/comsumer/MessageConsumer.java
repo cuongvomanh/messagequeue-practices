@@ -1,8 +1,5 @@
 package com.example.messagequeueinspring.messagequeue.comsumer;
 
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-
-import javax.jms.Message;
 import java.time.Duration;
 
 public interface MessageConsumer {
