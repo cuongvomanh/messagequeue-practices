@@ -1,6 +1,5 @@
 package com.example.messagequeueinspring.messagequeue.producer.impl;
 
-import com.example.messagequeueinspring.dto.BookDTO;
 import com.example.messagequeueinspring.messagequeue.producer.MessageProducerRecord;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
@@ -8,7 +7,6 @@ public class KafkaProducerRecordAdapter<K, V> implements MessageProducerRecord<K
 
     private ProducerRecord producerRecord;
     private String topics;
-    private BookDTO book;
 
     @Override
     public void setTopicsAndBook(String topics, V book) {
