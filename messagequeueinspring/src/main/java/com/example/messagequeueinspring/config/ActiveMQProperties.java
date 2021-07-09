@@ -4,14 +4,17 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 @Configuration
 @ConfigurationProperties(prefix = "activemq")
 @ConditionalOnMissingBean(type = "MessageQueueProperties.class")
-public class ActiveMQProperties implements MessageQueueProperties {
+public class ActiveMQProperties {
     private String url = "tcp://localhost:61616";
     private String queueName = "testqueue";
     private String userName = "admin";
     private String password = "admin";
+    private List<String> trustedPackages;
 
     public ActiveMQProperties() {
     }
@@ -53,5 +56,13 @@ public class ActiveMQProperties implements MessageQueueProperties {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<String> getTrustedPackages() {
+        return trustedPackages;
+    }
+
+    public void setTrustedPackages(List<String> trustedPackages) {
+        this.trustedPackages = trustedPackages;
     }
 }

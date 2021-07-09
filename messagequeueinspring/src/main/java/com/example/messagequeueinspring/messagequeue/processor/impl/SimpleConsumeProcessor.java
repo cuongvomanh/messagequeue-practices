@@ -1,28 +1,36 @@
-package com.example.messagequeueinspring.messagequeue.processor;
+package com.example.messagequeueinspring.messagequeue.processor.impl;
 
-import com.example.messagequeueinspring.config.KafkaProperties;
+import com.example.messagequeueinspring.messagequeue.comsumer.MessageConsumer;
+import com.example.messagequeueinspring.messagequeue.comsumer.MessageConsumerRecord;
+import com.example.messagequeueinspring.messagequeue.comsumer.MessageConsumerRecords;
+import com.example.messagequeueinspring.messagequeue.processor.ConsumeProcessorTemplate;
 import com.example.messagequeueinspring.service.handler.Handler;
+import org.apache.activemq.command.ActiveMQObjectMessage;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.time.Duration;
-import java.util.*;
 
 @Component
 @Scope("prototype")
-@Profile("kafka")
-public class KafkaConsumeProcessor<T> implements ConsumeProcessorTemplate {
-    private final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumeProcessor.class);
-    private Handler<T> handler;
+//@Profile("kafka")
+public class SimpleConsumeProcessor<K, V> implements ConsumeProcessorTemplate {
+    private final Logger LOGGER = LoggerFactory.getLogger(SimpleConsumeProcessor.class);
+    private Handler<V> handler;
     private String topics;
+    @Autowired
+    private ApplicationContext context;
 
+    @Autowired
+    private MessageConsumer consumer;
 
     @Override
     public void setHandler(Handler handler) {
@@ -34,21 +42,15 @@ public class KafkaConsumeProcessor<T> implements ConsumeProcessorTemplate {
         this.topics = topics;
     }
 
-    @Autowired
-    private KafkaProperties kafkaProperties;
-
-
 
     @Override
     public void run() {
-        Map<String, Object> consumerProps = kafkaProperties.getConsumerProps();
-        KafkaConsumer<String, T> consumer = new KafkaConsumer<>(consumerProps);
-        consumer.subscribe(Arrays.asList(topics));
+        consumer.subscribe(topics);
         boolean exitLoop = false;
         while (!exitLoop) {
             try {
-                ConsumerRecords<String, T> records = consumer.poll(Duration.ofSeconds(5));
-                for (ConsumerRecord<String, T> record : records) {
+                MessageConsumerRecords<String, V> records = consumer.poll(Duration.ofSeconds(5));
+                for (MessageConsumerRecord<String, V> record : records) {
                     handler.handle(record.value());
                 }
                 consumer.commitSync();
@@ -56,6 +58,7 @@ public class KafkaConsumeProcessor<T> implements ConsumeProcessorTemplate {
                 LOGGER.error("Complete with error {}", ex.getMessage(), ex);
                 handler.completeWithError(ex);
                 consumer.commitSync();
+                consumer.subscribe(topics);
 //                exitLoop = true;
             }
         }

@@ -5,11 +5,13 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-public interface MyProducerRecord {
+public interface MessageProducerRecord<K, V> {
 
 
-    public void setTopicsAndBook(String topics, BookDTO book);
+    public void setTopicsAndBook(String topics, V book);
 
 
-    public ProducerRecord getProducerRecord();
+    public Object getProducerRecord();
+
+    public String getTopics();
 }

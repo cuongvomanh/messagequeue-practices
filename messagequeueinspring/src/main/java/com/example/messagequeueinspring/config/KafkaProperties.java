@@ -1,6 +1,5 @@
 package com.example.messagequeueinspring.config;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,7 +9,7 @@ import java.util.Map;
 @Configuration
 @ConfigurationProperties(prefix = "kafka")
 //@ConditionalOnMissingBean(type = "MessageQueueProperties.class")
-public class KafkaProperties implements MessageQueueProperties {
+public class KafkaProperties {
 
     private String bootStrapServers = "localhost:9092";
 

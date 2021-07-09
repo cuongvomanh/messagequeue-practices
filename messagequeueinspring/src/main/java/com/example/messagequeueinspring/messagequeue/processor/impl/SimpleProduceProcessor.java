@@ -1,10 +1,10 @@
-package com.example.messagequeueinspring.messagequeue.processor;
+package com.example.messagequeueinspring.messagequeue.processor.impl;
 
 import com.example.messagequeueinspring.config.KafkaProperties;
 import com.example.messagequeueinspring.dto.BookDTO;
-import com.example.messagequeueinspring.messagequeue.producer.MyKafkaProducer;
-import com.example.messagequeueinspring.messagequeue.producer.MyProducerRecord;
-import com.example.messagequeueinspring.messagequeue.producer.Producer;
+import com.example.messagequeueinspring.messagequeue.processor.ProduceProcessorTemplate;
+import com.example.messagequeueinspring.messagequeue.producer.MessageProducerRecord;
+import com.example.messagequeueinspring.messagequeue.producer.MessageProducer;
 import org.apache.kafka.clients.producer.Callback;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -17,14 +17,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-@Profile("kafka & messagequeuetest")
-public class KafkaProduceProcessor implements ProduceProcessorTemplate {
-    private Logger LOGGER = LoggerFactory.getLogger(KafkaProduceProcessor.class);
+//@Profile("kafka & messagequeuetest")
+public class SimpleProduceProcessor implements ProduceProcessorTemplate {
+    private Logger LOGGER = LoggerFactory.getLogger(SimpleProduceProcessor.class);
     @Autowired
     private KafkaProperties kafkaProperties;
     private String topics;
     @Autowired
-    private Producer producer;
+    private MessageProducer messageProducer;
     @Autowired
     private ApplicationContext context;
 
@@ -32,12 +32,9 @@ public class KafkaProduceProcessor implements ProduceProcessorTemplate {
     public void run() {
         try {
             BookDTO book = new BookDTO(1, "Harry Potter", 0);
-            MyProducerRecord producerRecord = (MyProducerRecord) context.getBean(MyProducerRecord.class);
+            MessageProducerRecord<String, BookDTO> producerRecord = (MessageProducerRecord) context.getBean(MessageProducerRecord.class);
             producerRecord.setTopicsAndBook(topics, book);
-            producer.send(producerRecord, printSendResultCallback());
-//            KafkaProducer producer = new KafkaProducer<>(kafkaProperties.getProducerProps());
-//            Thread.sleep(5000L);
-//            producer.send(new ProducerRecord(topics, book), printSendResultCallback());
+            messageProducer.send(producerRecord, printSendResultCallback());
         } catch (Exception exception){
             LOGGER.error("Error kafka produce");
             exception.printStackTrace();
