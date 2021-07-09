@@ -5,12 +5,9 @@ import com.example.messagequeueinspring.messagequeue.producer.MessageProducer;
 import com.example.messagequeueinspring.messagequeue.producer.MessageProducerRecord;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.kafka.clients.producer.Callback;
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.jms.*;

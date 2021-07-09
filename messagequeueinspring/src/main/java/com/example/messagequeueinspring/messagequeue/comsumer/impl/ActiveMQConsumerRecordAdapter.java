@@ -4,7 +4,6 @@ import com.example.messagequeueinspring.messagequeue.comsumer.MessageConsumerRec
 import org.apache.activemq.command.ActiveMQObjectMessage;
 
 import javax.jms.JMSException;
-import javax.jms.Message;
 import java.io.Serializable;
 
 public class ActiveMQConsumerRecordAdapter<K, V> implements MessageConsumerRecord<K, V> {

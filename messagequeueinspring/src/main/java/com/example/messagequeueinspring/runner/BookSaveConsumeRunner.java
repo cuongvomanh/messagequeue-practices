@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-//@Profile("kafka")
 public class BookSaveConsumeRunner {
     private final Scheduler scheduler;
     private final BookHandler bookHandler;

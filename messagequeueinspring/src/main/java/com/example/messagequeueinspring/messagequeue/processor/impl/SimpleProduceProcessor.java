@@ -3,8 +3,8 @@ package com.example.messagequeueinspring.messagequeue.processor.impl;
 import com.example.messagequeueinspring.config.KafkaProperties;
 import com.example.messagequeueinspring.dto.BookDTO;
 import com.example.messagequeueinspring.messagequeue.processor.ProduceProcessorTemplate;
-import com.example.messagequeueinspring.messagequeue.producer.MessageProducerRecord;
 import com.example.messagequeueinspring.messagequeue.producer.MessageProducer;
+import com.example.messagequeueinspring.messagequeue.producer.MessageProducerRecord;
 import org.apache.kafka.clients.producer.Callback;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-//@Profile("kafka & messagequeuetest")
 public class SimpleProduceProcessor implements ProduceProcessorTemplate {
     private Logger LOGGER = LoggerFactory.getLogger(SimpleProduceProcessor.class);
     @Autowired

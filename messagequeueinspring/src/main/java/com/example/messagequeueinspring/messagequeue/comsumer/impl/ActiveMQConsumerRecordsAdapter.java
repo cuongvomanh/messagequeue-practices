@@ -2,7 +2,6 @@ package com.example.messagequeueinspring.messagequeue.comsumer.impl;
 
 import com.example.messagequeueinspring.messagequeue.comsumer.MessageConsumerRecord;
 import com.example.messagequeueinspring.messagequeue.comsumer.MessageConsumerRecords;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.jetbrains.annotations.NotNull;
 
 import javax.jms.Message;

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.jms.*;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ActiveMQConsumerAdapter<K,V> implements MessageConsumer {

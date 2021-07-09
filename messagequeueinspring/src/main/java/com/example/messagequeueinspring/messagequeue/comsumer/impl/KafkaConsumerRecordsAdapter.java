@@ -1,18 +1,12 @@
 package com.example.messagequeueinspring.messagequeue.comsumer.impl;
 
-import com.example.messagequeueinspring.messagequeue.comsumer.MessageConsumerRecord;
 import com.example.messagequeueinspring.messagequeue.comsumer.MessageConsumerRecords;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.utils.AbstractIterator;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 public class KafkaConsumerRecordsAdapter<K,V> implements MessageConsumerRecords {
     private ConsumerRecords consumerRecords;

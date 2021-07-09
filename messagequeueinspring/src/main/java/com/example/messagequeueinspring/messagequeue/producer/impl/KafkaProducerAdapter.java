@@ -5,9 +5,7 @@ import com.example.messagequeueinspring.messagequeue.producer.MessageProducer;
 import com.example.messagequeueinspring.messagequeue.producer.MessageProducerRecord;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 

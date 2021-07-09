@@ -2,8 +2,6 @@ package com.example.messagequeueinspring.messagequeue.comsumer.impl;
 
 import com.example.messagequeueinspring.config.KafkaProperties;
 import com.example.messagequeueinspring.messagequeue.comsumer.MessageConsumer;
-import com.example.messagequeueinspring.messagequeue.comsumer.MessageConsumerRecords;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 

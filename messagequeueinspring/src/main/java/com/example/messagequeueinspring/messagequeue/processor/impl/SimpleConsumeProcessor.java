@@ -5,23 +5,17 @@ import com.example.messagequeueinspring.messagequeue.comsumer.MessageConsumerRec
 import com.example.messagequeueinspring.messagequeue.comsumer.MessageConsumerRecords;
 import com.example.messagequeueinspring.messagequeue.processor.ConsumeProcessorTemplate;
 import com.example.messagequeueinspring.service.handler.Handler;
-import org.apache.activemq.command.ActiveMQObjectMessage;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.time.Duration;
 
 @Component
 @Scope("prototype")
-//@Profile("kafka")
 public class SimpleConsumeProcessor<K, V> implements ConsumeProcessorTemplate {
     private final Logger LOGGER = LoggerFactory.getLogger(SimpleConsumeProcessor.class);
     private Handler<V> handler;
