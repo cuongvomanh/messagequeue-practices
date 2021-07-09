@@ -15,6 +15,7 @@ public class ActiveMQConsumerAdapter<K,V> implements MessageConsumer {
     private ActiveMQProperties activeMQProperties;
     private String topics;
     private javax.jms.MessageConsumer consumer;
+    private Session session;
 
     @Override
     public MessageConsumerRecords<K, V> poll(Duration duration) {
@@ -37,7 +38,7 @@ public class ActiveMQConsumerAdapter<K,V> implements MessageConsumer {
         try {
             connection = connectionFactory.createConnection();
             connection.start();
-            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             Destination destination = session.createQueue(topics);
             consumer = session.createConsumer(destination);
             this.topics = topics;
@@ -48,11 +49,19 @@ public class ActiveMQConsumerAdapter<K,V> implements MessageConsumer {
 
     @Override
     public void commitSync() {
-
+        try {
+            session.commit();
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void close() {
-
+        try {
+            session.close();
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
     }
 }

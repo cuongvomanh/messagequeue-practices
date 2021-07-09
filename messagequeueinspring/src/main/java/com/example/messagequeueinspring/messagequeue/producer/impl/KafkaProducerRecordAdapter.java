@@ -9,7 +9,7 @@ public class KafkaProducerRecordAdapter<K, V> implements MessageProducerRecord<K
     private String topics;
 
     @Override
-    public void setTopicsAndBook(String topics, V book) {
+    public void setTopicsAndSendObject(String topics, V book) {
         this.topics = topics;
         producerRecord = new ProducerRecord<String, V>(topics, book);
     }

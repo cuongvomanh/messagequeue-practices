@@ -11,8 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -31,12 +29,11 @@ public class SimpleProduceProcessor implements ProduceProcessorTemplate {
         try {
             BookDTO book = new BookDTO(1, "Harry Potter", 0);
             MessageProducerRecord<String, BookDTO> producerRecord = (MessageProducerRecord) context.getBean(MessageProducerRecord.class);
-            producerRecord.setTopicsAndBook(topics, book);
-
+            producerRecord.setTopicsAndSendObject(topics, book);
 
             BookDTO book1 = new BookDTO(1, "Harry Potter1", 0);
             MessageProducerRecord<String, BookDTO> producerRecord1 = (MessageProducerRecord) context.getBean(MessageProducerRecord.class);
-            producerRecord1.setTopicsAndBook(topics, book1);
+            producerRecord1.setTopicsAndSendObject(topics, book1);
             messageProducer.send(producerRecord, printSendResultCallback());
             messageProducer.send(producerRecord1, printSendResultCallback());
         } catch (Exception exception){

@@ -6,7 +6,7 @@ public class ActiveMQProducerRecordAdapter implements MessageProducerRecord {
     private Object producerRecord;
     private String topics;
     @Override
-    public void setTopicsAndBook(String topics, Object producerRecord) {
+    public void setTopicsAndSendObject(String topics, Object producerRecord) {
         this.topics = topics;
         this.producerRecord = producerRecord;
     }
