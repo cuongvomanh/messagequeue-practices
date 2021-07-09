@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope("prototype")
 public class SimpleProduceProcessor implements ProduceProcessorTemplate {
     private Logger LOGGER = LoggerFactory.getLogger(SimpleProduceProcessor.class);
     @Autowired

@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import java.time.Duration;
 
 @Component
-@Scope("prototype")
 public class SimpleConsumeProcessor<K, V> implements ConsumeProcessorTemplate {
     private final Logger LOGGER = LoggerFactory.getLogger(SimpleConsumeProcessor.class);
     private Handler<V> handler;
