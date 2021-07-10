@@ -34,6 +34,7 @@ public class SimpleProduceProcessor implements ProduceProcessorTemplate {
             BookDTO book1 = new BookDTO(1, "Harry Potter1", 0);
             MessageProducerRecord<String, BookDTO> producerRecord1 = (MessageProducerRecord) context.getBean(MessageProducerRecord.class);
             producerRecord1.setTopicsAndSendObject(topics, book1);
+
             messageProducer.send(producerRecord, printSendResultCallback());
             messageProducer.send(producerRecord1, printSendResultCallback());
         } catch (Exception exception){

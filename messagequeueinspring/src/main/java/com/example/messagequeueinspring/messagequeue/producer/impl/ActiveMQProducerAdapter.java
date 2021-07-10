@@ -34,11 +34,11 @@ public class ActiveMQProducerAdapter implements MessageProducer {
         try {
             Destination destination = session.createQueue(producerRecord.getTopics());
             javax.jms.MessageProducer producer = session.createProducer(destination);
-            if (producerRecord.getProducerRecord() instanceof Serializable){
-                Message message = session.createObjectMessage((Serializable) producerRecord.getProducerRecord());
+            if (producerRecord.getSendObject() instanceof Serializable){
+                Message message = session.createObjectMessage((Serializable) producerRecord.getSendObject());
 //                TextMessage message = session.createTextMessage(msg);
                 producer.send(message);
-                LOGGER.info("'" + producerRecord.getProducerRecord() + "'' has been send.");
+                LOGGER.info("'" + producerRecord.getSendObject() + "'' has been send.");
             } else {
                 throw new RuntimeException("Send Object must has Serializable");
             }

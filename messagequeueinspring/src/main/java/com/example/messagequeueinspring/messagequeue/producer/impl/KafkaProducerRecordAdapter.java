@@ -19,7 +19,7 @@ public class KafkaProducerRecordAdapter<K, V> implements MessageProducerRecord<K
         return topics;
     }
 
-    public ProducerRecord getProducerRecord() {
+    public ProducerRecord getSendObject() {
         return producerRecord;
     }
 }

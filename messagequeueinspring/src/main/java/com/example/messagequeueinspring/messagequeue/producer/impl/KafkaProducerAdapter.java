@@ -29,7 +29,7 @@ public class KafkaProducerAdapter implements MessageProducer {
     @Override
     public void send(MessageProducerRecord producerRecord, Callback printSendResultCallback) {
         if (producerRecord instanceof KafkaProducerRecordAdapter){
-            ProducerRecord producerRecord1 = ((KafkaProducerRecordAdapter) producerRecord).getProducerRecord();
+            ProducerRecord producerRecord1 = ((KafkaProducerRecordAdapter) producerRecord).getSendObject();
             producer.send(producerRecord1, printSendResultCallback);
             LOGGER.info("'" + producerRecord1.value() + "'' has been send.");
         } else {

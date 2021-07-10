@@ -6,7 +6,7 @@ public interface MessageProducerRecord<K, V> {
     public void setTopicsAndSendObject(String topics, V book);
 
 
-    public Object getProducerRecord();
+    public Object getSendObject();
 
     public String getTopics();
 }

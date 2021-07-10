@@ -12,7 +12,7 @@ public class ActiveMQProducerRecordAdapter implements MessageProducerRecord {
     }
 
     @Override
-    public Object getProducerRecord() {
+    public Object getSendObject() {
         return producerRecord;
     }
 
